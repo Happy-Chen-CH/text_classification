@@ -6,13 +6,13 @@ import os
 class Config(object):
     def __init__(self):
         self.model_name = "textCNN"
-        self.data_path = "/Users/chen/heimaPythonSpace/text_classification/Bert_distil/data/data/"
+        self.data_path = "/Users/chen/PythonSpace/text_classification/Bert_distil/data/data/"
         self.train_path = self.data_path + "train.txt"  # 训练集
         self.dev_path = self.data_path + "dev.txt"  # 验证集
         self.test_path = self.data_path + "test.txt"  # 测试集
         self.class_list = [x.strip() for x in open(self.data_path+"class.txt", encoding="utf-8").readlines()]
         self.vocab_path = self.data_path + "vocab.pkl"  # 词表
-        self.save_path = "/Users/chen/heimaPythonSpace/text_classification/Bert_distil/src/saved_dic"
+        self.save_path = "/Users/chen/PythonSpace/text_classification/Bert_distil/src/saved_dic"
         if not os.path.exists(self.save_path):
             os.mkdir(self.save_path)
         self.save_path += "/" + self.model_name + ".pt"  # 模型训练结果

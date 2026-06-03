@@ -12,7 +12,7 @@ class Config(object):
         """
         self.model_name = "bert"  # 模型名称
         self.data_path = (
-            "/Users/chen/heimaPythonSpace/Bert_project/data/data1/"  # 数据集路径
+            "/Users/chen/PythonSpace/Bert_project/data/data1/"  # 数据集路径
         )
         self.train_path = self.data_path + "train.txt"  # 训练集
         self.dev_path = self.data_path + "dev.txt"  # 验证集
@@ -20,11 +20,11 @@ class Config(object):
         self.class_list = [
             x.strip() for x in open(self.data_path + "class.txt").readlines() if x.strip()
         ]  # 类别列表（过滤空行）
-        self.save_path = "/Users/chen/heimaPythonSpace/Bert_project/src/saved_dic"
+        self.save_path = "/Users/chen/PythonSpace/Bert_project/src/saved_dic"
         if not os.path.exists(self.save_path):
             os.mkdir(self.save_path)
         self.save_path += "/" + self.model_name + ".pt"  # 模型训练结果保存路径
-        self.save_path2 = "/Users/chen/heimaPythonSpace/Bert_project/src/saved_dic1"
+        self.save_path2 = "/Users/chen/PythonSpace/Bert_project/src/saved_dic1"
         if not os.path.exists(self.save_path2):
             os.mkdir(self.save_path2)
         self.save_path2 += "/" + self.model_name + "_quantized.pt"  # 量化模型存储结果
@@ -40,7 +40,7 @@ class Config(object):
         self.pad_size = 32  # 句子长度
         self.epoches = 1  # 训练轮数
 
-        self.bert_path = '/Users/chen/heimaPythonSpace/Bert_project/data/bert_pretrain/'# bert预训练模型路径
+        self.bert_path = '/Users/chen/PythonSpace/Bert_project/data/bert_pretrain/'# bert预训练模型路径
         self.tokenizer = BertTokenizer.from_pretrained(self.bert_path)#创建分词器
         self.bert_config = BertConfig.from_pretrained(self.bert_path+'bert_config.json')#获取bert的配置参数
         self.hidden_size = self.bert_config.hidden_size

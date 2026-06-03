@@ -65,12 +65,6 @@ checkpoint/
 checkpoints/
 
 # ======================
-# Data artifacts (optional — uncomment if you want to ignore them too)
-# ======================
-# *.pkl
-# *.pkl is commented out because vocab.pkl may be needed for reproducibility
-
-# ======================
 # Logs
 # ======================
 *.log

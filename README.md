@@ -1,4 +1,4 @@
-# 🗂️ Chinese News Text Classification | 中文新闻文本分类
+# 🗂️ Chinese News Text Classification | 中文新闻文本分类（bert预训练模型太大了传不上来，需要自己去官网下载哦）
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.x-red.svg)](https://pytorch.org/)

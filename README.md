@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 一个基于多种方法的中文新闻标题分类项目，支持**传统机器学习、深度学习、模型蒸馏**三条技术路线，覆盖从工程落地到学术实验的完整实践。
+注：Bert_project和random_forest_and_fasttext这两个实现文本分类的方案都是经过我运行验证没问题的，但是经过蒸馏后的那个实现方案好像有点问题，欢迎各位大佬来修改！
 
 ## ✨ 特性
 

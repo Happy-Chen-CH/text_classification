@@ -9,7 +9,8 @@ class Config(object):
         配置类,包含模型和训练所需各种参数
         """
         self.model_name = 'bert'
-        self.data_path = '/Users/chen/PythonSpace/text_classification/Bert_distil/data/data/'
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.data_path = os.path.join(base_dir, 'data', 'data') + '/'
         #训练集
         self.train_path = self.data_path + 'train.txt'
         #验证集
@@ -18,7 +19,8 @@ class Config(object):
         self.test_path = self.data_path + 'test.txt'
         self.class_list = [x.strip() for x in open(
             self.data_path + 'class.txt').readlines()]#类别名单
-        self.save_path = '/Users/chen/PythonSpace/text_classification/Bert_project/src/saved_dic'
+        project_root = os.path.dirname(base_dir)
+        self.save_path = os.path.join(project_root, 'Bert_project', 'src', 'saved_dic')
         if not os.path.exists(self.save_path):
             os.mkdir(self.save_path)
         self.save_path+='/'+self.model_name+'.pt'
@@ -28,7 +30,7 @@ class Config(object):
         self.batch_size = 128
         self.pad_size = 32
         self.learning_rate = 5e-5
-        self.bert_path = '/Users/chen/PythonSpace/text_classification/Bert_distil/data/bert_pretrain'
+        self.bert_path = os.path.join(base_dir, 'data', 'bert_pretrain')
         self.tokenizer = BertTokenizer.from_pretrained(self.bert_path)
         self.bert_config = BertConfig.from_pretrained(self.bert_path + '/bert_config.json')
         self.hidden_size = 768

@@ -1,0 +1,84 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# ======================
+# OS generated files
+# ======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ======================
+# IDE / Editor
+# ======================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ======================
+# Model checkpoints & pretrained weights (large binary files)
+# ======================
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+
+# Saved model directories
+saved_dic/
+saved_dict/
+saved_dic*/
+checkpoint/
+checkpoints/
+
+# ======================
+# Data artifacts (optional — uncomment if you want to ignore them too)
+# ======================
+# *.pkl
+# *.pkl is commented out because vocab.pkl may be needed for reproducibility
+
+# ======================
+# Logs
+# ======================
+*.log
+logs/
+
+# ======================
+# Environment & config
+# ======================
+.env
+.env.*
+!.env.example

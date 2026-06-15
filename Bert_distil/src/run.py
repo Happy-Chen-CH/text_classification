@@ -16,12 +16,13 @@ if __name__ == "__main__":
         model_name = "bert"
         x = import_module("models." + model_name)  # 动态导入模型
         config = x.Config()  # 使用模型的配置
-        
+
         # 初始化
         np.random.seed(1)
         torch.manual_seed(1)
-        torch.cuda.manual_seed_all(1)
-        torch.backends.cudnn.deterministic = True  # 保证每次结果一样
+        if config.device.type != 'mps':
+            torch.cuda.manual_seed_all(1)
+            torch.backends.cudnn.deterministic = True  # 保证每次结果一样
         
         # 数据集构建
         print("Loading data for Bert Model...")
@@ -40,17 +41,18 @@ if __name__ == "__main__":
         model_name = "bert"
         bert_module = import_module("models." + model_name)
         bert_config = bert_module.Config()  # 使用BERT模型的配置
-        
+
         # 加载cnn模型
         model_name = "textCNN"
         cnn_module = import_module("models." + model_name)
         cnn_config = cnn_module.Config()  # 使用TextCNN模型的配置
-        
+
         # 初始化
         np.random.seed(1)
         torch.manual_seed(1)
-        torch.cuda.manual_seed_all(1)
-        torch.backends.cudnn.deterministic = True  # 保证每次结果一样
+        if bert_config.device.type != 'mps':
+            torch.cuda.manual_seed_all(1)
+            torch.backends.cudnn.deterministic = True  # 保证每次结果一样
         
         # 构建bert数据集，因为只需要训练结果作为软目标，这里不需要dev_iter和test_iter
         bert_train_data, _, _ = build_dataset(bert_config)

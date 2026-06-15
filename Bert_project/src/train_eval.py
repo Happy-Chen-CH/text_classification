@@ -46,7 +46,7 @@ def train(config, model, train_iter, dev_iter):
         },
     ]
     # 设置优化器
-    optimizer = optim.AdamW(optimizer_grouped_parameters, lr=config.leanrning_rate)
+    optimizer = optim.AdamW(optimizer_grouped_parameters, lr=config.learning_rate)
     dev_best_loss = float("inf")
     # 将模型设置为训练模式
     model.train()
@@ -151,7 +151,8 @@ def test(config,model,test_iter):
     model: 训练好的模型
     test_iter: 测试集的数据迭代器
     """
-    
+    # 加载训练过程中保存的最佳模型
+    model.load_state_dict(torch.load(config.save_path, map_location=config.device), strict=False)
     model.eval()
 
     start_time = time.time()

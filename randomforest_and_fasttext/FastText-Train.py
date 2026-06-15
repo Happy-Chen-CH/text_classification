@@ -1,5 +1,4 @@
 import fasttext
-from torch.backends.mkl import verbose
 
 train_data_path='./data/train_fast.txt'
 test_data_path='./data/test_fast.txt'

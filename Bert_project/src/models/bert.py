@@ -34,14 +34,14 @@ class Config(object):
         self.device = torch.device("cpu")
 
         self.num_classes = len(self.class_list)  # 类别数量
-        self.leanrning_rate = 5e-5  # 学习率
+        self.learning_rate = 5e-5  # 学习率
         self.batch_size = 128  # 批次大小
         self.pad_size = 32  # 句子长度
         self.epoches = 1  # 训练轮数
 
-        self.bert_path = os.path.join(base_dir, 'data', 'bert_pretrain') + '/'  # bert预训练模型路径
+        self.bert_path = 'bert-base-chinese'  # 从HuggingFace Hub在线拉取bert预训练模型
         self.tokenizer = BertTokenizer.from_pretrained(self.bert_path)#创建分词器
-        self.bert_config = BertConfig.from_pretrained(self.bert_path+'bert_config.json')#获取bert的配置参数
+        self.bert_config = BertConfig.from_pretrained(self.bert_path)#获取bert的配置参数
         self.hidden_size = self.bert_config.hidden_size
 
 class Model(nn.Module):

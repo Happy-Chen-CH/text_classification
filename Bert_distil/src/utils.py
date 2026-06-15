@@ -32,21 +32,21 @@ def build_vocab(file_path, tokenizer, max_size, min_freq=1):
             # 使用指定分词器对文本进行分词，并更新词汇表
             for word in tokenizer(content):
                 vocab_dic[word] = vocab_dic.get(word, 0) + 1
-            # 根据词频对词汇表进行排序，词频从高到低排序
-            vocab_list = sorted(
-                [_ for _ in vocab_dic.items() if _[1] >= min_freq],
-                key=lambda x: x[1],
-                reverse=True,
-            )[:max_size]
-            # 将选定词汇构造成字典，键为单词，值为索引
-            vocab_dic = {
-                word_count[0]: idx for idx, word_count in enumerate(vocab_list)
-            }
-            # 添加特殊符号到词汇表
-            vocab_dic.update(
-                {UNK: len(vocab_dic), PAD: len(vocab_dic) + 1, CLS: len(vocab_dic) + 2}
-            )
-            return vocab_dic
+    # 根据词频对词汇表进行排序，词频从高到低排序（在遍历所有行之后）
+    vocab_list = sorted(
+        [_ for _ in vocab_dic.items() if _[1] >= min_freq],
+        key=lambda x: x[1],
+        reverse=True,
+    )[:max_size]
+    # 将选定词汇构造成字典，键为单词，值为索引
+    vocab_dic = {
+        word_count[0]: idx for idx, word_count in enumerate(vocab_list)
+    }
+    # 添加特殊符号到词汇表
+    vocab_dic.update(
+        {UNK: len(vocab_dic), PAD: len(vocab_dic) + 1, CLS: len(vocab_dic) + 2}
+    )
+    return vocab_dic
 
 
 def build_dataset_CNN(config):

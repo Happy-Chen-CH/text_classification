@@ -27,7 +27,6 @@ from sklearn.metrics import f1_score
 
 # 2.读取数据集
 TRAIN_CORPUS = './data/train_new.csv'
-TEST_CORPUS = './data/test.csv'
 STOP_WORDS = './data/stopwords.txt'
 WORDS_COLUMN = 'words'
 content = pd.read_csv(TRAIN_CORPUS)

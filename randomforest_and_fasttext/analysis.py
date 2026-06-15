@@ -40,7 +40,7 @@ def jieba_cut(text):
 content['words']=content.sentence.apply(jieba_cut)
 print(content.head())
 content['words']=content['sentence'].apply(lambda s: ' '.join(jieba_cut(s)))
-content['words']=content['words'].apply(lambda s: ' '.join(s.split())[:30])
+content['words']=content['words'].apply(lambda s: ' '.join(s.split()[:30]))
 print(content.head())
 content.to_csv('./data/train_new.csv')
 

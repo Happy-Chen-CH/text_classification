@@ -2,14 +2,14 @@ import jieba
 
 #储存数据集中类别信息
 id_to_label={}
-#di从0开始
-id=0
+#idx从0开始
+idx=0
 #打开数据集类别文件
 with open('./data/class.txt','r',encoding='utf-8') as f1:
     for line in f1.readlines():
         line=line.strip('\n').strip()
-        id_to_label[id]=line
-        id+=1
+        id_to_label[idx]=line
+        idx+=1
 #print('id_to_label:',id_to_label)
 
 #储存数据集训练数据

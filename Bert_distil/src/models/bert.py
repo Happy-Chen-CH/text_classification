@@ -30,10 +30,10 @@ class Config(object):
         self.batch_size = 128
         self.pad_size = 32
         self.learning_rate = 5e-5
-        self.bert_path = os.path.join(base_dir, 'data', 'bert_pretrain')
+        self.bert_path = 'bert-base-chinese'  # 从HuggingFace Hub在线拉取bert预训练模型
         self.tokenizer = BertTokenizer.from_pretrained(self.bert_path)
-        self.bert_config = BertConfig.from_pretrained(self.bert_path + '/bert_config.json')
-        self.hidden_size = 768
+        self.bert_config = BertConfig.from_pretrained(self.bert_path)
+        self.hidden_size = self.bert_config.hidden_size
 
 class Model(nn.Module):
     def __init__(self, config):

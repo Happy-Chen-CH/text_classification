@@ -1,6 +1,7 @@
 # 🗂️ Chinese News Text Classification · 中文新闻文本分类
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![uv](https://img.shields.io/badge/uv-package%20manager-de7e00.svg)](https://docs.astral.sh/uv/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.x-red.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/%F0%9F%A4%97-Transformers-orange.svg)](https://huggingface.co/)
 [![FastText](https://img.shields.io/badge/FastText-0.9-yellowgreen.svg)](https://fasttext.cc/)
@@ -127,6 +128,9 @@
 ```
 text_classification/
 │
+├── pyproject.toml                       # uv 项目配置 & 依赖管理
+├── uv.lock                              # 依赖锁定文件
+│
 ├── randomforest_and_fasttext/          # 传统机器学习方案
 │   ├── data/                           # 数据集
 │   │   ├── train.txt                   # 训练集 (18万条，tab分隔)
@@ -240,29 +244,38 @@ text_classification/
 
 | 依赖 | 版本 | 用途 |
 |------|------|------|
-| Python | 3.8+ | 运行环境 |
-| PyTorch | 1.x+ | BERT / TextCNN 深度学习框架 |
-| Transformers | 4.x+ | HuggingFace BERT 模型加载 |
-| fastText | 0.9.x | FastText 训练与推理 |
-| scikit-learn | 1.x+ | TF-IDF / 随机森林 |
+| Python | 3.9+ | 运行环境 |
+| PyTorch | 2.0+ | BERT / TextCNN 深度学习框架 |
+| Transformers | 4.30+ | HuggingFace BERT 模型加载 |
+| fastText | 0.9+ | FastText 训练与推理 |
+| scikit-learn | 1.3+ | TF-IDF / 随机森林 |
 | jieba | 0.42+ | 中文分词 |
-| Flask | 2.x+ | REST API 服务 |
-| tqdm | 4.x+ | 进度条显示 |
+| Flask | 2.3+ | REST API 服务 |
+| tqdm | 4.65+ | 进度条显示 |
 | NumPy / Pandas | — | 数据处理 |
 
 ### 安装
 
+本项目使用 [uv](https://docs.astral.sh/uv/) 管理依赖，无需手动安装 conda 环境。
+
 ```bash
-# 创建虚拟环境 (推荐 conda)
-conda create -n textcls python=3.8
-conda activate textcls
+# 1. 安装 uv（如已安装可跳过）
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# 安装核心依赖
-pip install torch numpy pandas scikit-learn tqdm transformers fasttext jieba flask
+# 2. 克隆项目
+git clone https://github.com/Happy-Chen-CH/text_classification.git
+cd text_classification
 
-# 可选依赖
-pip install icecream  # 随机森林脚本调试输出
+# 3. 安装全部依赖（推荐）
+uv sync --extra all
+
+# 或者按需安装特定方案的依赖：
+uv sync --extra bert       # 仅 BERT 微调方案
+uv sync --extra fasttext   # 仅 FastText + 随机森林方案
+uv sync --extra distil     # 仅知识蒸馏方案
 ```
+
+> 💡 `uv sync` 会自动创建虚拟环境并锁定依赖版本，无需手动 `pip install`。
 
 ---
 
@@ -577,11 +590,16 @@ python run.py --task train_kd
 
 ### 7. `ModuleNotFoundError: No module named 'xxx'`
 
-确保已在正确的 conda 环境中并安装了全部依赖：
+确保已正确安装依赖：
 
 ```bash
-conda activate textcls
-pip install torch numpy pandas scikit-learn tqdm transformers fasttext jieba flask
+# 使用 uv 安装全部依赖
+uv sync --extra all
+
+# 激活虚拟环境后运行脚本
+source .venv/bin/activate
+# 或使用 uv run 直接运行
+uv run python Bert_project/src/run.py --model bert
 ```
 
 ### 8. Mac Apple Silicon (M1/M2/M3) 相关
